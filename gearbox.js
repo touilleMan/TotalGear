@@ -1,3 +1,21 @@
+var snd_motor_run = new buzz.sound("ressources/sounds/motor_run.wav", {
+    preload: true,
+    autoplay: false,
+    loop: true
+})
+
+var snd_motor_stop = new buzz.sound("ressources/sounds/motor_stop.wav", {
+    preload: true,
+    autoplay: false,
+    loop: false
+})
+
+var snd_motor_start = new buzz.sound("ressources/sounds/motor_start.wav", {
+    preload: true,
+    autoplay: false,
+    loop: false
+})
+
 var GEARS = [
 { 'acceleration' : 2000.0, 'min_rpm' : 0, 'max_rpm' : 7500, 'coeff': 0.0 },
 { 'acceleration' : 1902.25, 'min_rpm' : 1000, 'max_rpm' : 7500, 'coeff': 8./1000 },
@@ -44,7 +62,7 @@ function gear_change(gear) {
         }
         if (new_rpm < new_gear['min_rpm']) {
             // The torque is not strong enough, stall the motor !
-            GearBox.state = 'stopped';
+            motor_stop();
         } else if (new_rpm > new_gear['max_rpm']) {
             // The rpm is too big, motor brake
             GearBox.motor_brake = new_rpm - new_gear['max_rpm'];
@@ -61,13 +79,31 @@ function gear_change(gear) {
     }
 }
 
-function start() {
+function start_stop() {
     if (GearBox.state == 'running'){
-        GearBox.state = 'stopped';
+        motor_stop();
     } else if (GearBox.rpm < 100) {
-        GearBox.state = 'running';
-        GearBox.motor_brake = 0.0;
-        GearBox.rpm = DEFAULT_RPM;
+        motor_start();
+    }
+}
+
+function motor_start() {
+    GearBox.state = 'running';
+    GearBox.motor_brake = 0.0;
+    GearBox.rpm = DEFAULT_RPM;
+    snd_motor_stop.stop()
+    snd_motor_start.play()
+    snd_motor_run.play()
+    snd_motor_run.fadeIn(4000)
+}
+
+function motor_stop() {
+    // If already stopped, nothing to do
+    if (GearBox.state != 'stopped') {
+        snd_motor_start.stop()
+        snd_motor_run.fadeOut(500);
+        snd_motor_stop.play()
+        GearBox.state = 'stopped';
     }
 }
 
@@ -120,6 +156,9 @@ function update() {
         }
     }
 
+    // Update the sound speed
+    snd_motor_run.setSpeed((GearBox.rpm / 100))
+
     // Finally, update the html page
     $('#gear').html(GearBox.gear_level);
     $('#speed').html(GearBox.speed);
@@ -138,7 +177,7 @@ $(document).ready(function() {
             GearBox.accelerate = false;
         }, 'keyup');
 
-    Mousetrap.bind('enter', function() { start(); }, 'keydown' );
+    Mousetrap.bind('enter', function() { start_stop(); }, 'keydown' );
 
     Mousetrap.bind('up', function() { gear_change(GearBox.gear_level + 1);}, 'keydown' );
     Mousetrap.bind('down', function() { gear_change(GearBox.gear_level - 1);}, 'keydown' );
