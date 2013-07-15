@@ -1,0 +1,68 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+    <head>
+        <title>Total Gear</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <link rel=stylesheet type="text/css" href="css/main.css">
+
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/appframework-master/jq.appframework.js"></script>
+        <script type="text/javascript" charset="utf-8" src="http://localhost:58888/_appMobi/appmobi.js"></script> 
+        <script type="text/javascript" charset="utf-8" src="js/jQueryRotate.js"></script>
+        <script type="text/javascript" charset="utf-8" src="_appMobi/xhr.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/mousetrap.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/buzz.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/gearbox.js"></script>
+
+    </head>
+    <body>
+        <div>
+            <div id="div_rpm_counter">
+                <img id="rpm_counter" src="images/rpm_counter_8pts_small.png" />
+                <img id="ref_rpm" src="images/aiguille.png" />
+            </div>
+            <div id="div_speed">
+                <img id="speed" src="images/tachymetre_ai.png" />
+                <img id="ref_speed" src="images/aiguille_speed.png" />
+            </div>
+        </div>
+        <div id="div_control">
+            <div id="div_gear">
+                <img id="gear" src="images/embrayage.png" />
+            </div>
+            <div id="div_brake">
+                <img id="brake" src="images/brake.png" />
+            </div>
+            <div id="div_accelerator">
+                <img id="accelerator" src="images/accelerate.png" />
+            </div>
+
+            <div style="display: inline; position: absolute; right: 0px;">
+                <div style="display: inline;">
+                    <img id="gear_up" src="images/gear_up.png" />
+                </div>
+                <div style="display: inline;">
+                    <img id="gear_down" src="images/gear_down.png" />
+                </div>
+            </div>
+
+            <div style="display: inline; color: #00f; font-size: 20px;">
+                <strong>Gear:</strong>
+                <span id="d_gear">0</span>
+            </div>
+            <div style="display: inline; color: #00f; font-size: 20px;">
+                <strong>Speed:</strong>
+                <span id="d_speed">0</span>
+            </div>
+            <div style="display: inline; color: #00f; font-size: 20px;">
+                <strong>RPM:</strong>
+                <span id="d_rpm">0</span>
+            </div>
+            <div style="display: inline; color: #00f; font-size: 20px;">
+                <strong>State:</strong>
+                <span id="d_state">0</span>
+            </div>
+        </div>
+    </body>
+</html>

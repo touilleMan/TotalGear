@@ -1,0 +1,97 @@
+/* Prevent copy paste for all elements except text fields */
+*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+input, textarea  { -webkit-user-select:text; }
+
+/* Set up the page with a default background image */
+body {
+    background-color:#000;
+    color:#fff;
+    margin:0px;
+    padding:0px;
+}
+
+#div_rpm_counter {
+    display: inline;
+}
+
+#div_rpm_counter img {
+    position: absolute;
+}
+
+#ref_rpm {
+    position: absolute;
+    width: 700px;
+    left: -40px;
+    top: 302px;
+}
+
+#rpm_counter {
+    padding: 20px;
+    width: 400px;
+}
+
+#div_speed {
+    display: inline;
+    position: absolute;
+    left: 350px;
+}
+
+#speed {
+    width: 550px;
+}
+
+
+#ref_speed {
+    position: absolute;
+    width: 580px;
+    left: -15px;
+    top: 265px;
+}
+
+#div_control {
+    position: absolute;
+    top: 350px;
+    width: 900px;
+}
+
+#div_gear {
+    display: inline;
+}
+
+#gear {
+    padding-left: 10px;
+    height: 80px;
+}
+
+#div_brake {
+    display: inline;
+}
+
+#brake {
+    padding-left: 10px;
+    height: 80px;
+}
+
+#div_accelerator {
+    display: inline;
+}
+
+#accelerator {
+    padding: 0px;
+    height: 120px;
+}
+
+
+
+#gear_up {
+    position: absolute;
+    padding: 2px;
+    width: 70px;
+}
+
+#gear_down {
+    position: absolute;
+    padding: 2px;
+    top: 60px;
+    width: 70px;
+}
